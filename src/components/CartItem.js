@@ -1,10 +1,12 @@
 import './Cart.css'
 import { ListGroup, Badge } from 'react-bootstrap';
 
-function CartItem({product, removeFromCart}) {
+function CartItem({product, addCount, removeCount}) {
     return <ListGroup.Item key={product.id}>
         {product.brand} {product.model} ${product.price} 
-        <Badge bg="danger" className='ml-4 pointer' onClick={() => removeFromCart(product.id)}>Remove</Badge>
+        <Badge bg="success" className='pointer' onClick={() => addCount(product.id)}>+</Badge>
+        <Badge bg="secondary" className='pointer' onClick={() => removeCount(product.id)}>{product.count}</Badge>
+        <Badge bg="danger" className='pointer' onClick={() => removeCount(product.id)}>-</Badge>
     </ListGroup.Item>
 }
 

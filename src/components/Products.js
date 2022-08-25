@@ -32,17 +32,24 @@ function Products() {
         }, [])
         
         const addToCart = id => {
-              setProducts(products.map(product => ({...product, inCart: product.id === id ? true : product.inCart})))
+                setProducts(products.map(product => ({ ...product, inCart: product.id === id ? true : product.inCart })))
         }
 
         const removeFromCart = id => {
-                setProducts(products.map(product => ({...product, inCart: product.id === id ? false : product.inCart})))
-          }
+                setProducts(products.map(product => ({ ...product, inCart: product.id === id ? false : product.inCart })))
+        }
 
         const clearCart = () => {
-        setProducts(products.map(product => ({...product, inCart: false})))
+                setProducts(products.map(product => ({ ...product, inCart: false, count: 1 })))
         }
-  
+
+        const addCount = id => {
+                setProducts(products.map(product => ({ ...product, count: product.id === id ? product.count+1 : product.count})))
+        }
+
+        const removeCount = id => {
+                setProducts(products.map(product => ({ ...product, count: product.id === id ? (product.count === 1 ? product.count : product.count-1) : product.count, inCart: product.id === id ? (product.count === 1 ? false : product.inCart) : product.inCart})))
+        }
 
         return (
                 <div>
@@ -50,7 +57,9 @@ function Products() {
                         products.filter(product => product.inCart).length ? 
                         <Cart products={products.filter(product => product.inCart)} 
                         clearCart={clearCart} 
-                        removeFromCart={removeFromCart}/> : ''
+                        removeFromCart={removeFromCart}
+                        addCount={addCount}
+                        removeCount={removeCount}/> : ''
                         }
                         <h3 className="text-center">Sneakers</h3>
                         <Row>
