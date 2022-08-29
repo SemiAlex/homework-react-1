@@ -5,6 +5,7 @@ import Cart from "./Cart";
 
 function Products() {
         const [products, setProducts] = useState([]);
+   //     const [total, setTotal] = useState(0);
 
         useEffect(() => {
                 setProducts([
@@ -30,7 +31,7 @@ function Products() {
                         imgSrc: 'https://www.famousfootwear.com/blob/product-images/20000/58/10/3/58103_pair_medium.jpg', price: 59.99,}
                         ])
         }, [])
-        
+
         const addToCart = id => {
                 setProducts(products.map(product => ({ ...product, inCart: product.id === id ? true : product.inCart })))
         }
@@ -47,7 +48,7 @@ function Products() {
                 setProducts(products.map(product => ({ ...product, count: product.id === id ? product.count+1 : product.count})))
         }
 
-        const removeCount = id => {
+        const reduceCount = id => {
                 setProducts(products.map(product => ({ ...product, count: product.id === id ? (product.count === 1 ? product.count : product.count-1) : product.count, inCart: product.id === id ? (product.count === 1 ? false : product.inCart) : product.inCart})))
         }
 
@@ -59,7 +60,7 @@ function Products() {
                         clearCart={clearCart} 
                         removeFromCart={removeFromCart}
                         addCount={addCount}
-                        removeCount={removeCount}/> : ''
+                        reduceCount={reduceCount}/> : ''
                         }
                         <h3 className="text-center">Sneakers</h3>
                         <Row>
