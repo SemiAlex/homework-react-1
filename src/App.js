@@ -4,7 +4,7 @@ import Products from './components/Products';
 
 function App() {
   return (
-    <div className='container bg-light mx-auto m-3 p-3 rounded'>
+    <div className='container m-3-auto'>
       <Products/>
     </div>
   );
