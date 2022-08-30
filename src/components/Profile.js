@@ -1,6 +1,6 @@
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { useRef } from 'react';
+import { useRef, useEffect } from 'react';
 
 function Profile({profile, setProfile}) {
     const nameRef = useRef(null);

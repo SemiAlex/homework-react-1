@@ -2,13 +2,21 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Products from './components/Products';
 import ThemeContext from './context/ThemeContext';
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import Footer from './components/Footer';
 import Profile from './components/Profile';
 
 function App() {
   const [theme, setTheme] = useState('bg-light');
   const [profile, setProfile] = useState({name: '', email: ''})
+
+  useEffect(() => {
+    localStorage.setItem('Name', JSON.stringify(profile.name));
+  }, [profile]);
+
+  useEffect(() => {
+    localStorage.setItem('email', JSON.stringify(profile.email));
+  }, [profile]);
 
   return (
     <div className={`m-0-auto ${theme} ${theme === 'bg-light' ? '' : 'text-light'}`}>
