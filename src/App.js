@@ -12,13 +12,13 @@ function App() {
 
   return (
     <div className={`m-0-auto ${theme} ${theme === 'bg-light' ? '' : 'text-light'}`}>
+      <header className='pt-3'>
+        <h3 className='text-center'>Sneakers</h3>
+        <div className='container'>
+          <Profile profile={profile} setProfile={setProfile} />
+        </div>
+      </header>
       <ThemeContext.Provider value={{ theme, setTheme, profile }}>
-        <header className='pt-3'>
-          <h3 className='text-center'>Sneakers</h3>
-            <div className='container'>
-              <Profile profile={profile} setProfile={setProfile}/>
-            </div>
-        </header>
         <div className='container'>
           <Products />
         </div>
