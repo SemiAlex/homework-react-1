@@ -4,15 +4,20 @@ import Products from './components/Products';
 import ThemeContext from './context/ThemeContext';
 import {useState} from "react";
 import Footer from './components/Footer';
+import Profile from './components/Profile';
 
 function App() {
   const [theme, setTheme] = useState('bg-light');
+  const [profile, setProfile] = useState({name: '', email: ''})
 
   return (
-    <div className={`m-0-auto ${theme}`}>
-      <ThemeContext.Provider value={{ theme, setTheme }}>
+    <div className={`m-0-auto ${theme} ${theme === 'bg-light' ? '' : 'text-light'}`}>
+      <ThemeContext.Provider value={{ theme, setTheme, profile }}>
         <header className='pt-3'>
-          <h3 className={`text-center ${theme === 'bg-light' ? '' : 'text-light'}`}>Sneakers</h3>
+          <h3 className='text-center'>Sneakers</h3>
+            <div className='container'>
+              <Profile profile={profile} setProfile={setProfile}/>
+            </div>
         </header>
         <div className='container'>
           <Products />
