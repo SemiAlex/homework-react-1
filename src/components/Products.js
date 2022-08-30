@@ -5,7 +5,6 @@ import Cart from "./Cart";
 
 function Products() {
         const [products, setProducts] = useState([]);
-   //     const [total, setTotal] = useState(0);
 
         useEffect(() => {
                 setProducts([
@@ -17,8 +16,8 @@ function Products() {
                         imgSrc: 'https://www.famousfootwear.com/blob/product-images/20000/73/44/5/73445_pair_medium.jpg', price: 79.99,},
                         {id: 3, count: 1, inCart: false, brand: 'Nike', model: `Women's Air Max Excee Sneaker 3`, 
                         imgSrc: 'https://www.famousfootwear.com/blob/product-images/20000/73/42/8/73428_pair_medium.jpg', price: 84.99,},
-                        {id: 4, count: 1, inCart: false, brand: 'Converse', model: `Women's Chuck Taylor All Star Hi Lift Platform Sneaker`, 
-                        imgSrc: 'https://www.famousfootwear.com/blob/product-images/20000/53/18/9/53189_pair_medium.jpg', price: 74.99,},
+                        {id: 4, count: 1, inCart: false, brand: 'Circus NY', model: `Women's Everly Lug Bottom Moc Loafer`, 
+                        imgSrc: 'https://www.famousfootwear.com/blob/product-images/20000/36/04/0/36040_pair_medium.jpg', price: 74.99,},
                         {id: 5, count: 1, inCart: false, brand: 'Vans', model: `Women's Asher Slip On Sneaker`, 
                         imgSrc: 'https://www.famousfootwear.com/blob/product-images/20000/94/60/3/94603_pair_medium.jpg', price: 64.99,},
                         {id: 6, count: 1, inCart: false, brand: 'Adidas', model: `Women's Racer TR21 Sneaker`, 
@@ -28,7 +27,11 @@ function Products() {
                         {id: 8, count: 1, inCart: false, brand: 'Birkenstock', model: `Women's Arizona Footbed Sandal`, 
                         imgSrc: 'https://www.famousfootwear.com/blob/product-images/20000/51/64/0/51640_pair_medium.jpg', price: 109.99,},
                         {id: 9, count: 1, inCart: false, brand: 'Vans', model: `Ward Pride Low Top Sneaker`, 
-                        imgSrc: 'https://www.famousfootwear.com/blob/product-images/20000/58/10/3/58103_pair_medium.jpg', price: 59.99,}
+                        imgSrc: 'https://www.famousfootwear.com/blob/product-images/20000/58/10/3/58103_pair_medium.jpg', price: 59.99,},
+                        {id: 10, count: 1, inCart: false, brand: 'Birkenstock', model: `Women's Arizona Chunky Footbed Sandal by Papillio`, 
+                        imgSrc: 'https://www.famousfootwear.com/blob/product-images/20000/50/95/9/50959_pair_medium.jpg', price: 59.99,},
+                        {id: 11, count: 1, inCart: false, brand: 'Franco Sarto', model: `Women's Balin Platform Loafer`, 
+                        imgSrc: 'https://www.famousfootwear.com/blob/product-images/20000/09/84/2/09842_pair_medium.jpg', price: 109.99,}
                         ])
         }, [])
 
@@ -37,7 +40,7 @@ function Products() {
         }
 
         const removeFromCart = id => {
-                setProducts(products.map(product => ({ ...product, inCart: product.id === id ? false : product.inCart })))
+                setProducts(products.map(product => ({ ...product, inCart: product.id === id ? false : product.inCart, count: product.id === id ? 1 : product.count })))
         }
 
         const clearCart = () => {
@@ -62,7 +65,6 @@ function Products() {
                         addCount={addCount}
                         reduceCount={reduceCount}/> : ''
                         }
-                        <h3 className="text-center">Sneakers</h3>
                         <Row>
                              { products.map(product => <Product
                              key={product.id}
