@@ -7,9 +7,11 @@ import ThemeContext from '../context/ThemeContext';
 
 function Cart({ products, clearCart, removeFromCart, addCount, reduceCount }) {
     const { profile } = useContext(ThemeContext);
+    const { setAlertText } = useContext(ThemeContext);
     const [confirmation, setConfirmation] = useState(false);
-
+    
     function confirm() {
+        setAlertText('Purchase confirmed');
         setConfirmation(true);
         setTimeout(() => { setConfirmation(false) }, 3000)
     }

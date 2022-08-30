@@ -1,10 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import {Row} from 'react-bootstrap';
 import Product from "./Product";
 import Cart from "./Cart";
+import ThemeContext from "../context/ThemeContext";
 
 function Products() {
         const [products, setProducts] = useState([]);
+        const { setAlertText } = useContext(ThemeContext);
 
         useEffect(() => {
                 setProducts([
@@ -36,23 +38,28 @@ function Products() {
         }, [])
 
         const addToCart = id => {
-                setProducts(products.map(product => ({ ...product, inCart: product.id === id ? true : product.inCart })))
+                setProducts(products.map(product => ({ ...product, inCart: product.id === id ? true : product.inCart })));
+                setAlertText('Product added to cart');
         }
 
         const removeFromCart = id => {
                 setProducts(products.map(product => ({ ...product, inCart: product.id === id ? false : product.inCart, count: product.id === id ? 1 : product.count })))
+                setAlertText('Product removed from cart');
         }
 
         const clearCart = () => {
                 setProducts(products.map(product => ({ ...product, inCart: false, count: 1 })))
+                setAlertText('Cart cleared');
         }
 
         const addCount = id => {
                 setProducts(products.map(product => ({ ...product, count: product.id === id ? product.count+1 : product.count})))
+                setAlertText('Product added to cart');
         }
 
         const reduceCount = id => {
                 setProducts(products.map(product => ({ ...product, count: product.id === id ? (product.count === 1 ? product.count : product.count-1) : product.count, inCart: product.id === id ? (product.count === 1 ? false : product.inCart) : product.inCart})))
+                setAlertText('Product removed from cart');
         }
 
         return (

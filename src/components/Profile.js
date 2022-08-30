@@ -1,13 +1,18 @@
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useRef, useEffect } from 'react';
+import ThemeContext from "../context/ThemeContext";
+import React, { useContext } from 'react';
 
 function Profile({profile, setProfile}) {
+    const { setAlertText } = useContext(ThemeContext);
     const nameRef = useRef(null);
     const emailRef = useRef(null);
 
+
     function saveProfile() {
-        setProfile({name: nameRef.current.value, email: emailRef.current.value})
+        setProfile({name: nameRef.current.value, email: emailRef.current.value});
+        setAlertText('Logged in');
     }
 
     if(profile.name === '', profile.email === '') {
