@@ -6,7 +6,7 @@ import React, { useContext } from 'react';
 function Message() {
   const { alertText } = useContext(ThemeContext)
 
-  return <div className={`a ${alertText === '' ? 'd-none' : 'd-block'}`}>
+  return alertText === '' ? '' : <div className='alert-class'>
     <Alert variant='success'>{alertText}</Alert>
   </div>
 }
