@@ -12,14 +12,6 @@ function App() {
   const [profile, setProfile] = useState({name: '', email: ''});
   const [alertText, setAlertText] = useState('');
 
-  useEffect(() => {
-    localStorage.setItem('Name', JSON.stringify(profile.name));
-  }, [profile]);
-
-  useEffect(() => {
-    localStorage.setItem('email', JSON.stringify(profile.email));
-  }, [profile]);
-
   return (
     <div className={`m-0-auto ${theme} ${theme === 'bg-light' ? '' : 'text-light'}`}>
       <ThemeContext.Provider value={{ theme, setTheme, profile, alertText, setAlertText }}>
