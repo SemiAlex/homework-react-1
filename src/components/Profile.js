@@ -11,9 +11,19 @@ function Profile({profile, setProfile}) {
 
 
     function saveProfile() {
-        setProfile({name: nameRef.current.value, email: emailRef.current.value});
+        let newProfile = {name: nameRef.current.value, email: emailRef.current.value};
+        setProfile(newProfile)
+        localStorage.setItem('profile', JSON.stringify(newProfile))
+        console.log(newProfile)
         setAlertText('Logged in');
     }
+
+    useEffect (() => {
+        let savedProfile = localStorage.getItem('profile')
+        if(savedProfile) {
+            setProfile(JSON.parse(savedProfile))
+        }
+    }, [])
 
     if(profile.name === '', profile.email === '') {
     return (
