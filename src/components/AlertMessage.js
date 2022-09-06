@@ -3,7 +3,7 @@ import ThemeContext from "../context/ThemeContext";
 import React, { useContext, useEffect, useState } from 'react';
 
 function AlertMessage() {
-  const { alertText, setAlertText } = useContext(ThemeContext)
+  const { alertText } = useContext(ThemeContext)
   const [alertArr, setAlertArr] = useState([])
 
   useEffect(()=>{
@@ -11,8 +11,8 @@ function AlertMessage() {
   }, [alertText])
 
   useEffect(() => {
-    const newAlertArr = alertArr.filter(el => el !== alertText)
-    const timer = setTimeout(() => setAlertArr(newAlertArr), 1000);
+
+    const timer = setTimeout(() => { const newAlertArr = [...alertArr]; newAlertArr.pop(); setAlertArr(newAlertArr) }, 1000);
     return () => clearTimeout(timer);
   }, [alertArr]);
 
@@ -20,7 +20,7 @@ function AlertMessage() {
     <ListGroup>
       {alertArr.map((el, index) => <ListGroup.Item key={index} variant='success'>{el}</ListGroup.Item>)}
     </ListGroup>
-  </div> 
+  </div>
 }
 
 export default AlertMessage;
