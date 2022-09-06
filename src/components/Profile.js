@@ -2,32 +2,32 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useRef, useEffect } from 'react';
 import ThemeContext from "../context/ThemeContext";
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
+import { Navigate } from 'react-router-dom';
 
-function Profile({profile, setProfile}) {
-    const { setAlertText } = useContext(ThemeContext);
+function Profile() {
+    const { setAlertText, profile, setProfile } = useContext(ThemeContext);
+    const [ profileSaved, setProfileSaved] = useState(false);
     const nameRef = useRef(null);
     const emailRef = useRef(null);
+    let savedProfile = localStorage.getItem('profile');
 
 
     function saveProfile() {
-        let newProfile = {name: nameRef.current.value, email: emailRef.current.value};
+        let newProfile = { name: nameRef.current.value, email: emailRef.current.value };
         setProfile(newProfile)
         localStorage.setItem('profile', JSON.stringify(newProfile))
-        console.log(newProfile)
-        setAlertText('Logged in');
+        setAlertText(`Welcome, ${profile.name}`);
+        setProfileSaved(true)
     }
 
-    useEffect (() => {
-        let savedProfile = localStorage.getItem('profile')
-        if(savedProfile) {
+    useEffect(() => {
+        if (savedProfile) {
             setProfile(JSON.parse(savedProfile))
         }
     }, [])
 
-    if(profile.name === '', profile.email === '') {
-    return (
-        <Form className='w-25'>
+    return <Form className='w-25'>
             <Form.Group className="mb-3" controlId="formName">
                 <Form.Label>Name</Form.Label>
                 <Form.Control   type="text"
@@ -46,12 +46,8 @@ function Profile({profile, setProfile}) {
                 </Form.Text>
             </Form.Group>
             <Button variant="primary" onClick={saveProfile}>Submit</Button>
+            {profileSaved ? <Navigate replace to="/"/> : ''}
         </Form>
-    ); } else {
-        return <>
-        <h5>Welcome, {profile.name}!</h5>
-        </>
-    }
 }
 
 export default Profile;

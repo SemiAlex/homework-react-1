@@ -7,7 +7,7 @@ function CartItem({product, addCount, reduceCount, removeFromCart}) {
         <Badge bg="success" className='pointer' onClick={() => addCount(product.id)}>+</Badge>
         <Badge bg="secondary" className='pointer'>{product.count}</Badge>
         <Badge bg="danger" className='pointer' onClick={() => reduceCount(product.id)}>-</Badge>
-        <Badge bg="danger" className='pointer mgl' onClick={() => removeFromCart(product.id)}>remove</Badge>
+        <Badge bg="danger" className='pointer left-margin' onClick={() => removeFromCart(product.id)}>remove</Badge>
     </ListGroup.Item>
 }
 

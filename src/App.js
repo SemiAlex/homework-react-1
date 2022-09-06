@@ -2,10 +2,16 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Products from './components/Products';
 import ThemeContext from './context/ThemeContext';
-import {useEffect, useState} from "react";
+import { useState } from "react";
+import Header from './components/Header';
 import Footer from './components/Footer';
-import Profile from './components/Profile';
-import Message from './components/Alert';
+import AlertMessage from './components/AlertMessage';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import AboutUs from './static/AboutUs';
+import Contacts from './static/Contacts';
+import NotFound from './static/NotFound';
+import ProfilePage from './static/ProfilePage';
+
 
 function App() {
   const [theme, setTheme] = useState('bg-light');
@@ -14,17 +20,22 @@ function App() {
 
   return (
     <div className={`m-0-auto ${theme} ${theme === 'bg-light' ? '' : 'text-light'}`}>
-      <ThemeContext.Provider value={{ theme, setTheme, profile, alertText, setAlertText }}>
-        <header className='pt-3'>
-          <h3 className='text-center'>Sneakers</h3>
-          <div className='container'>
-            <Profile profile={profile} setProfile={setProfile} />
-          </div>
-        </header>
-        <Message />
-        <div className='container'>
-          <Products />
-        </div>
+      <ThemeContext.Provider value={{ theme, setTheme, profile, setProfile, alertText, setAlertText }}>
+        <BrowserRouter>
+        <Header />
+          <Routes>
+            <Route path="/" element={<>
+              {alertText ? <AlertMessage /> : ''}
+              <div className='container'>
+                <Products />
+              </div>
+            </>} />
+            <Route path="/about-us" element={<AboutUs/>} />
+            <Route path="/contacts" element={<Contacts/>} />
+            <Route path="/profile" element={<ProfilePage/>} />
+            <Route path="*" element={<NotFound/>} />
+          </Routes>
+        </BrowserRouter>
         <Footer />
       </ThemeContext.Provider>
     </div>

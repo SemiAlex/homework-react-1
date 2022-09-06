@@ -20,7 +20,7 @@ function Cart({ products, clearCart, removeFromCart, addCount, reduceCount }) {
         <h4>Cart</h4>
         <ListGroup>
             {
-                products.map(product => <CartItem product={product} removeFromCart={removeFromCart} addCount={addCount} reduceCount={reduceCount} />)
+                products.map((product, index) => <CartItem key={index} product={product} removeFromCart={removeFromCart} addCount={addCount} reduceCount={reduceCount} />)
             }
         </ListGroup>
         <Total products={products} />

@@ -10,7 +10,7 @@ function Products() {
 
         useEffect(() => {
                 setProducts([
-                        {id: 0, count: 1, count: 1, inCart: false, brand: 'Nike', model: `Women's Air Max Bella 5 Training Shoe`, 
+                        {id: 0, count: 1, inCart: false, brand: 'Nike', model: `Women's Air Max Bella 5 Training Shoe`, 
                         imgSrc: 'https://www.famousfootwear.com/blob/product-images/20000/55/07/2/55072_pair_medium.jpg', price: 89.99,},
                         {id: 1, count: 1, inCart: false, brand: 'Nike', model: `Women's Air Max Excee Sneaker`, 
                         imgSrc: 'https://www.famousfootwear.com/blob/product-images/20000/96/85/8/96858_pair_medium.jpg', price: 89.99,},
@@ -39,12 +39,14 @@ function Products() {
 
         const addToCart = id => {
                 setProducts(products.map(product => ({ ...product, inCart: product.id === id ? true : product.inCart })));
-                setAlertText('Product added to cart');
+                const productName = products.filter(product => product.id === id).map(el => `${el.brand} ${el.model}`);
+                setAlertText(`${productName} added to cart`);
         }
 
         const removeFromCart = id => {
                 setProducts(products.map(product => ({ ...product, inCart: product.id === id ? false : product.inCart, count: product.id === id ? 1 : product.count })))
-                setAlertText('Product removed from cart');
+                const productName = products.filter(product => product.id === id).map(el => `${el.brand} ${el.model}`);
+                setAlertText(`${productName} removed from to cart`);
         }
 
         const clearCart = () => {
@@ -54,12 +56,14 @@ function Products() {
 
         const addCount = id => {
                 setProducts(products.map(product => ({ ...product, count: product.id === id ? product.count+1 : product.count})))
-                setAlertText('Product added to cart');
+                const productName = products.filter(product => product.id === id).map(el => `${el.brand} ${el.model}`);
+                setAlertText(`${productName} added to cart`);
         }
 
         const reduceCount = id => {
                 setProducts(products.map(product => ({ ...product, count: product.id === id ? (product.count === 1 ? product.count : product.count-1) : product.count, inCart: product.id === id ? (product.count === 1 ? false : product.inCart) : product.inCart})))
-                setAlertText('Product removed from cart');
+                const productName = products.filter(product => product.id === id).map(el => `${el.brand} ${el.model}`);
+                setAlertText(`${productName} removed from cart`);
         }
 
         return (
