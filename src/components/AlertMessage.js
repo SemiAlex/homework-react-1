@@ -12,7 +12,7 @@ function AlertMessage() {
 
   useEffect(() => {
 
-    const timer = setTimeout(() => { const newAlertArr = [...alertArr]; newAlertArr.pop(); setAlertArr(newAlertArr) }, 1000);
+    const timer = setTimeout(() => { const newAlertArr = [...alertArr]; newAlertArr.pop(); setAlertArr(newAlertArr) }, 3000);
     return () => clearTimeout(timer);
   }, [alertArr]);
 
