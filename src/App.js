@@ -11,6 +11,7 @@ import AboutUs from './static/AboutUs';
 import Contacts from './static/Contacts';
 import NotFound from './static/NotFound';
 import ProfilePage from './static/ProfilePage';
+import SingleProduct from './components/SingleProduct';
 
 
 function App() {
@@ -24,12 +25,14 @@ function App() {
         <BrowserRouter>
         <Header />
           <Routes>
-            <Route path="/" element={<>
-              {alertText ? <AlertMessage /> : ''}
-              <div className='container'>
-                <Products />
-              </div>
-            </>} />
+            <Route path="/products" element={<>
+                                              {alertText ? <AlertMessage /> : ''}
+                                              <div className='container'>
+                                                <Products />
+                                              </div>
+                                            </>}>
+              <Route path=":productId" element={<SingleProduct/>} />
+            </Route>
             <Route path="/about-us" element={<AboutUs/>} />
             <Route path="/contacts" element={<Contacts/>} />
             <Route path="/profile" element={<ProfilePage/>} />

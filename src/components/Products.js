@@ -3,6 +3,7 @@ import {Row} from 'react-bootstrap';
 import Product from "./Product";
 import Cart from "./Cart";
 import ThemeContext from "../context/ThemeContext";
+import { Outlet } from "react-router-dom";
 
 function Products() {
         const [products, setProducts] = useState([]);
@@ -68,6 +69,7 @@ function Products() {
 
         return (
                 <div>
+                        <Row><Outlet context={products}/></Row>
                         {
                         products.filter(product => product.inCart).length ? 
                         <Cart products={products.filter(product => product.inCart)} 
