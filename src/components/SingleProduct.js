@@ -8,7 +8,7 @@ function SingleProduct() {
 
     useEffect(() => {
         if (products?.length) {
-            setSingleProduct(products.filter(el => el.id === +productId));
+            setSingleProduct(products.filter(el => el.id === +productId)[0]);
             window.scroll({
                 top: 0,
                 behavior: 'smooth'
@@ -17,7 +17,7 @@ function SingleProduct() {
         console.log(singleProduct)
     }, [products, productId])
 
-    return <h1>Product {productId}:{singleProduct.brand} {singleProduct.model}, price: {singleProduct.price}</h1>
+    return <h1>{singleProduct.brand} {singleProduct.model}, price: ${singleProduct.price}</h1>
 }
 
 export default SingleProduct
